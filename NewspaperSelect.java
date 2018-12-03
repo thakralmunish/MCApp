@@ -1,10 +1,13 @@
 package com.example.thakr.newspaper_testapp_1;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -40,10 +43,8 @@ public class NewspaperSelect extends Fragment {
     public View view;
 
     private StorageReference mStorageRef;
-    public static final String FB_STORAGE_PATH = "image/";
-    public static final String NEWSPAPER_NOTES = "NOTES";
 
-    static boolean ReadFile = false;
+    public static String POS_NEWSPAPER_SELECTED = "";
 
     public NewspaperSelect() {
 
@@ -61,23 +62,24 @@ public class NewspaperSelect extends Fragment {
         view = inflater.inflate(R.layout.fragment_newspaper_select, container, false);
 
         GridView gridView = view.findViewById(R.id.GridView);
-        gridView.setAdapter(new GridViewAdapter(getContext()));
+        final GridViewAdapter gridViewAdapter = new GridViewAdapter(getContext());
+        gridView.setAdapter(gridViewAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(parent.getContext(), "POSITION " + Integer.toString(position), Toast.LENGTH_SHORT).show();
+                POS_NEWSPAPER_SELECTED = gridViewAdapter.getItem(position);
 
-
+                /*
                 if (position == 1) {
-                    sharedData.setNewspaperSelected("Loading");
+                    sharedData.setNewspaperSelected("Loading...");
 
                     final Article article = new Article();
                     FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction().replace(R.id.MainFrame, article);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
 
-                    File root = new File(Environment.getExternalStorageDirectory(), NEWSPAPER_NOTES);
+                    File root = new File(Environment.getExternalStorageDirectory(), MainActivity.NEWSPAPER_NOTES);
                     if (!root.exists()) {
                         root.mkdirs();
                     }
@@ -104,7 +106,7 @@ public class NewspaperSelect extends Fragment {
                     }
                     else {
                         //File localFile = File.createTempFile("DOWNLOADEDFILE", "txt");
-                        StorageReference storageReference = mStorageRef.child(FB_STORAGE_PATH + "trydownload.txt");
+                        StorageReference storageReference = mStorageRef.child("image/trydownload.txt");
 
                         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
                         NetworkInfo ActiveNetwork = connectivityManager.getActiveNetworkInfo();
@@ -116,7 +118,6 @@ public class NewspaperSelect extends Fragment {
                                         @Override
                                         public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                                             Toast.makeText(getContext(), "SUCCESSFUL DOWNLOAD", Toast.LENGTH_SHORT).show();
-                                            ReadFile = true;
 
                                             StringBuilder stringBuilder = new StringBuilder();
                                             try {
@@ -153,12 +154,12 @@ public class NewspaperSelect extends Fragment {
 
                 }
                 else {
-                    sharedData.setNewspaperSelected(position);
-                    SelectedNewspaper selectedNewspaper = new SelectedNewspaper();
-                    FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction().replace(R.id.MainFrame, selectedNewspaper);
+                */
+                    final ListOfArticles listOfArticles = new ListOfArticles();
+                    FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction().replace(R.id.MainFrame, listOfArticles);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
-                }
+                //}
             }
         });
 
