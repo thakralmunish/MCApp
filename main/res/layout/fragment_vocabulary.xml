@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Vocabulary">
+
+    <TextView
+        android:id="@+id/Heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textStyle="italic"
+        android:textColor="@color/colorPrimary"
+        android:text="Vocabulary" />
+
+    <SearchView
+        android:id="@+id/SearchView"
+        android:layout_width="match_parent"
+        android:iconifiedByDefault="false"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Heading"
+        android:queryHint="SEARCH FOR WORDS"
+        android:layout_marginTop="16dp">
+
+    </SearchView>
+
+
+
+    <ListView
+        android:id="@+id/VocabularyListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/SearchView"
+        android:layout_marginTop="16dp">
+    </ListView>
+
+    <TextView
+        android:id="@+id/Word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="DEFAULT"
+        android:textFontWeight="15"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/Meaning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="270dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="DEFAULT"
+        android:textFontWeight="10"
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="131dp"
+        android:gravity="center"
+        android:text="OK, GOT IT!"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/add_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="73dp"
+        android:gravity="center"
+        android:text="ADD WORD"
+        android:visibility="gone" />
+
+
+
+</RelativeLayout>
